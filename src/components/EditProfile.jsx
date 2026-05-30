@@ -102,9 +102,11 @@ const EditProfile = ({ user }) => {
                     className="input input-bordered w-full max-w-xs"
                     onChange={(e) => setGender(e.target.value)}
                     value={gender}
-                  >
+                  > 
+                    <option value="">Select gender</option>
                     <option value={"male"}>Male</option>
                     <option value={"female"}>Female</option>
+                    <option value={"others"}>Others</option>
                   </select>
                 </label>
                 <label className="form-control w-full max-w-xs my-2">
@@ -129,6 +131,7 @@ const EditProfile = ({ user }) => {
         </div>
         <UserCard
           user={{ firstName, lastName, photoUrl, age, gender, about }}
+          hideButton ={true}
         />
       </div>
       {showToast && (

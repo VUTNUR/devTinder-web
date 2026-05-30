@@ -3,7 +3,7 @@ import { BASE_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { removeUserFromFeed } from "../utils/feedSlice";
 
-const UserCard = ({ user }) => {
+const UserCard = ({ user, hideButton=false }) => {
   const { _id, firstName, lastName, photoUrl, age, gender, about } = user;
   const dispatch = useDispatch();
 
@@ -31,10 +31,12 @@ const UserCard = ({ user }) => {
         <h2 className="card-title">{firstName + " " + lastName}</h2>
         {age && gender && <p>{age + ", " + gender}</p>}
         <p>{about}</p>
-        <div className="card-actions justify-center my-4">
+        {
+          !hideButton && 
+          <div className="card-actions justify-center my-4">
           <button
             className="btn btn-primary"
-            onClick={() => handleSendRequest("ignored", _id)}
+            onClick={() => handleSendRequest("notInterested", _id)}
           >
             Ignore
           </button>
@@ -45,6 +47,7 @@ const UserCard = ({ user }) => {
             Interested
           </button>
         </div>
+        }
       </div>
     </div>
   );
